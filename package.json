@@ -1,0 +1,14 @@
+{
+  "name": "private-couple-chat",
+  "version": "1.0.0",
+  "description": "Private chat & video app for couples",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0"
+  }
+}

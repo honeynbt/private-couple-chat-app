@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Love Connect ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+  <h1>Welcome to Love Connect 💕</h1>
+  <p>Create your private room</p>
+  <form id="form">
+    <input type="text" id="roomPassword" placeholder="Optional Room Password 🔐">
+    <button class="btn">Start Private Chat 💖</button>
+  </form>
+  <script>
+    document.getElementById('form').onsubmit = function(e) {
+      e.preventDefault();
+      const password = document.getElementById('roomPassword').value;
+      fetch('/').then(response => {
+        if (response.redirected) {
+          const roomUrl = new URL(response.url);
+          if (password) {
+            localStorage.setItem(roomUrl.pathname, password);
+          }
+          window.location.href = roomUrl.href;
+        }
+      });
+    };
+  </script>
+</body>
+</html>
