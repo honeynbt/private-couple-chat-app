@@ -9,28 +9,20 @@
   <h1>Welcome to Love Connect 💕</h1>
   <p>Create your private room</p>
   <form id="form">
-    <input type="text" id="roomPassword" placeholder="Optional Room Password 🔐">
-    <button class="btn">Start Private Chat 💖</button>
+    <input type="text" id="roomPassword" placeholder="Optional Room Password 🔐" />
+    <button class="btn" type="submit">Start Private Chat 💖</button>
   </form>
+
   <script>
-    document.getElementById('form').onsubmit = function(e) {
-    e.preventDefault();
-    const password = document.getElementById('roomPassword').value;
-
-    // Make a GET request to the root which redirects to /room/<uuid>
-    fetch('/', { redirect: 'follow' })
-      .then(res => {
-        const redirectedUrl = res.url;
-
-        // Store password locally (optional)
-        if (password) {
-          localStorage.setItem(new URL(redirectedUrl).pathname, password);
-        }
-
-        // Redirect manually
-        window.location.href = redirectedUrl;
-      });
-  };
+    document.getElementById('form').onsubmit = function (e) {
+      e.preventDefault();
+      const password = document.getElementById('roomPassword').value;
+      const roomId = crypto.randomUUID(); // Generate unique room ID
+      if (password) {
+        localStorage.setItem(`/room/${roomId}`, password);
+      }
+      window.location.href = `/room/${roomId}`;
+    };
   </script>
 </body>
 </html>
